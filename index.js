@@ -6,8 +6,14 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+app.get('/', (req, res) => {
+    res.json({
+        message: 'Hello!'
+    })
+})
+
 app.use('/api/', userRoutes)
 
 app.listen(process.env.PORT || 8080, () => {
-    console.log(`Server running on http://localhost:${port}`)
+    console.log(`Server running...`)
 })
