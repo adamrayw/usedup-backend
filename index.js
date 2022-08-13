@@ -4,26 +4,15 @@ const cors = require('cors');
 
 const app = express()
 
-var allowedOrigins = ['https://usedup.vercel.app/login', 'https://usedup.vercel.app/register', 'https://usedup.herokuapp.com/api/login'];
-
-app.use(cors({
-
-    origin: function (origin, callback) {
-        // allow requests with no origin
-        // (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) === -1) {
-            var msg = 'The CORS policy for this site does not ' +
-                'allow access from the specified Origin.';
-            return callback(new Error(msg), false);
-        }
-        return callback(null, true);
-    },
-
-    exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar'],
-
-    credentials: true,
-}));
+app.use(cors());
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Headers, *, Access-Control-Allow-Origin', 'Origin, X-Requested-with, Content_Type,Accept,Authorization', 'http://localhost:4200');
+    if (req.method === 'OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'PUT,POST,PATCH,DELETE,GET');
+        return res.status(200).json({});
+    }
+    next();
+});
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
