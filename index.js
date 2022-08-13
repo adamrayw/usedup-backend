@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const app = express()
 
-var allowedOrigins = ['https://usedup.vercel.app/'];
+var allowedOrigins = ['https://usedup.vercel.app/login', 'https://usedup.vercel.app/register', 'https://usedup.herokuapp.com/api/login'];
 
 app.use(cors({
 
