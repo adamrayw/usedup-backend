@@ -69,6 +69,7 @@ const userLogin = async (req, res) => {
         }
     })
 
+
     if (user) {
         // compare password
         bcrypt.compare(password, user.password, function (err, result) {
@@ -84,6 +85,9 @@ const userLogin = async (req, res) => {
                 res.json({ message: 'invalid credentials' })
             }
         });
+    } else {
+        res.status(400)
+        res.json({ message: 'invalid credentials' })
     }
 
 
