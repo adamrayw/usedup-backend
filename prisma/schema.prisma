@@ -23,9 +23,36 @@ model User {
 }
 
 model Iklan {
-  id        String    @id @unique @default(uuid())
-  User      User?     @relation(fields: [userId], references: [id])
-  userId    String?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime?
+  id               String    @id @unique @default(uuid())
+  User             User?     @relation(fields: [userId], references: [id])
+  userId           String?
+  Provinsi         Provinsi? @relation(fields: [provinsiId], references: [id])
+  provinsiId       String?
+  judul_iklan      String
+  deskripsi        String
+  alamat           String
+  kategori         String
+  merk             String?
+  model            String?
+  status           String    @default("draft")
+  tahun            BigInt?
+  jarak_tempuh     BigInt?
+  tipe_bahan_bakar String?
+  kapasitas_mesin  BigInt?
+  l_bangunan       BigInt?
+  l_tanah          BigInt?
+  kamar_tidur      Int?
+  lantai           Int?
+  fasilitas        String?
+  sertifikasi      String?
+  harga            BigInt
+  foto             Json
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime?
+}
+
+model Provinsi {
+  id    String  @id @unique @default(uuid())
+  name  String
+  Iklan Iklan[]
 }
