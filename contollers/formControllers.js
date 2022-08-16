@@ -1,14 +1,8 @@
 const { PrismaClient } = require('@prisma/client')
-const cloudinary = require('cloudinary').v2
 const prisma = new PrismaClient()
 
-
-cloudinary.config().cloud_name;
-
-
 const mobilBekas = async (req, res) => {
-    const { userId, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsi, harga, foto, kategori } = req.body
-    console.log(userId, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsi, harga, foto, kategori);
+    const { userId, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsiId, harga, foto, kategori } = req.body
 
     const convertHarga = Number(harga)
     const convertTahun = Number(tahun)
@@ -26,7 +20,7 @@ const mobilBekas = async (req, res) => {
             judul_iklan,
             deskripsi,
             alamat,
-            provinsiId: provinsi,
+            provinsiId,
             kategori: 'fsefse',
             harga: convertHarga,
             foto: { foto }
@@ -39,4 +33,15 @@ const mobilBekas = async (req, res) => {
 
 }
 
-module.exports = { mobilBekas }
+const provinsiData = async (req, res) => {
+    try {
+        const response = await prisma.provinsi.findMany()
+
+        res.json(response)
+
+    } catch (e) {
+        res.json(e)
+    }
+}
+
+module.exports = { mobilBekas, provinsiData }
