@@ -16,8 +16,7 @@ const userRegister = async (req, res) => {
     const { name, email, password } = req.body
 
     if (!name || !email || !password) {
-        res.status(400)
-        res.json({ message: 'Please add all fields' })
+        res.status(400).json({ messages: 'Please add all fields' })
     }
 
     // check jika user sudah ada
@@ -62,6 +61,12 @@ const userRegister = async (req, res) => {
 const userLogin = async (req, res) => {
     const { email, password } = req.body
 
+
+    if (!email || !password) {
+        res.status(400)
+        res.json({ message: 'Form tidak boleh kosong' })
+    }
+
     // check if existed
     const user = await prisma.user.findUnique({
         where: {
@@ -87,7 +92,7 @@ const userLogin = async (req, res) => {
         });
     } else {
         res.status(400)
-        res.json({ message: 'invalid credentials' })
+        res.json({ message: 'User tidak ditemukan' })
     }
 
 
