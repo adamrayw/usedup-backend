@@ -37,7 +37,9 @@ const view = async (req, res) => {
                 id: req.params.id
             },
             include: {
-                User: true
+                User: true,
+                Provinsi: true
+
             }
         })
 
