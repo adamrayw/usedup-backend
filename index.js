@@ -1,6 +1,7 @@
 const express = require('express');
 const userRoutes = require('./routes/userRoutes');
 const formRoutes = require('./routes/formRoutes');
+const homeRoute = require('./routes/homeRoute');
 const cors = require('cors');
 
 const app = express()
@@ -26,6 +27,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/', userRoutes)
 app.use('/api/', formRoutes)
+app.use('/api/', homeRoute)
 
 app.listen(process.env.PORT || 8080, () => {
     console.log(`Server running...`)
