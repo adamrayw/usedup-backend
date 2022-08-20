@@ -53,4 +53,40 @@ const view = async (req, res) => {
     }
 }
 
-module.exports = { home, view }
+const kategori = async (req, res) => {
+    try {
+        const data = await prisma.kategori.findMany()
+
+        const updated = updateData(data)
+
+        res.status(200).json(updated)
+    } catch (e) {
+        res.status(500).json({
+            message: e
+        })
+    }
+}
+
+const kategoriItems = async (req, res) => {
+    try {
+        const data = await prisma.kategori.findUnique({
+            where: {
+                slug: req.params.slug
+            },
+            include: {
+                Iklan: true
+            }
+        })
+
+        const updated = updateData(data)
+
+        res.status(200).json(updated)
+    } catch (e) {
+        res.status(500).json({
+            message: e
+        })
+    }
+}
+
+
+module.exports = { home, view, kategori, kategoriItems }
