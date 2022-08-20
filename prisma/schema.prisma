@@ -16,6 +16,8 @@ model User {
   email        String    @unique
   password     String
   tentang_saya String?
+  isVerified   Boolean   @default(false)
+  foto_profile Json?
   no_telp      String?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime?
@@ -28,6 +30,10 @@ model Iklan {
   userId           String?
   Provinsi         Provinsi? @relation(fields: [provinsiId], references: [id])
   provinsiId       String?
+  Merk             Merk?     @relation(fields: [merkId], references: [id])
+  merkId           String?
+  Kategori         Kategori? @relation(fields: [kategoriId], references: [id])
+  kategoriId       String?
   judul_iklan      String
   deskripsi        String
   alamat           String
@@ -54,5 +60,18 @@ model Iklan {
 model Provinsi {
   id    String  @id @unique @default(uuid())
   name  String
+  Iklan Iklan[]
+}
+
+model Merk {
+  id    String  @id @unique @default(uuid())
+  name  String
+  Iklan Iklan[]
+}
+
+model Kategori {
+  id    String  @id @unique @default(uuid())
+  name  String
+  slug  String  @unique
   Iklan Iklan[]
 }
