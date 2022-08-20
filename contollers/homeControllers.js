@@ -74,7 +74,11 @@ const kategoriItems = async (req, res) => {
                 slug: req.params.slug
             },
             include: {
-                Iklan: true
+                Iklan: {
+                    include: {
+                        Provinsi: true
+                    }
+                }
             }
         })
 
