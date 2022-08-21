@@ -2,7 +2,7 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 const mobilBekas = async (req, res) => {
-    const { userId, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsiId, harga, foto, kategori } = req.body
+    const { userId, merk, model, tahun, jarak_tempuh, tipe_bahan_bakar, kapasitas_mesin, judul_iklan, deskripsi, alamat, provinsiId, harga, foto, kategoriId } = req.body
 
     const convertHarga = Number(harga)
     const convertTahun = Number(tahun)
@@ -21,7 +21,8 @@ const mobilBekas = async (req, res) => {
             deskripsi,
             alamat,
             provinsiId,
-            kategori: 'fsefse',
+            kategori: kategoriId,
+            kategoriId: kategoriId,
             harga: convertHarga,
             foto: { foto }
         }
