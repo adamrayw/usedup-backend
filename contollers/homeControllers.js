@@ -40,7 +40,8 @@ const view = async (req, res) => {
             },
             include: {
                 User: true,
-                Provinsi: true
+                Provinsi: true,
+                Kategori: true
 
             }
         })
