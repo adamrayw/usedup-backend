@@ -12,9 +12,11 @@ function updateData(data) {
 }
 
 const home = async (req, res) => {
+    const result = req.query.result
     try {
         // const data = await prisma.iklan.findMany()
         const data = await prisma.iklan.findMany({
+            take: Number(result),
             include: {
                 Provinsi: true
             }
