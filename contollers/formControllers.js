@@ -24,10 +24,9 @@ const mobilBekas = async (req, res) => {
             kategori: kategoriId,
             kategoriId: kategoriId,
             harga: convertHarga,
-            foto: { foto }
+            foto
         }
     })
-
     res.json({
         message: 'success'
     })
