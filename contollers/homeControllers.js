@@ -95,5 +95,18 @@ const kategoriItems = async (req, res) => {
     }
 }
 
+const deleteData = async (req, res) => {
+    try {
+        const response = await prisma.iklan.deleteMany()
 
-module.exports = { home, view, kategori, kategoriItems }
+        res.status(200).json({
+            message: 'Delete successfully',
+            data: response
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+module.exports = { home, view, kategori, kategoriItems, deleteData }
