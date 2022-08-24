@@ -137,5 +137,41 @@ const favorit = async (req, res) => {
     }
 }
 
+const tambahFavorit = async (req, res) => {
+    const userId = req.body.userId
+    const iklanId = req.body.iklanId
+    try {
+        const response = await prisma.favorit.create({
+            data: {
+                userId,
+                iklanId
+            }
+        })
 
-module.exports = { home, view, kategori, kategoriItems, deleteData, favorit }
+        res.status(200).json({
+            message: response
+        })
+    } catch (error) {
+        res.json(error)
+    }
+}
+
+const hapusFavorit = async (req, res) => {
+    const id = req.body.id
+    try {
+        const response = await prisma.favorit.delete({
+            where: {
+                id: id,
+            }
+        })
+
+        res.status(200).json({
+            message: response
+        })
+    } catch (error) {
+        res.json(error)
+    }
+}
+
+
+module.exports = { home, view, kategori, kategoriItems, deleteData, favorit, tambahFavorit, hapusFavorit }
