@@ -18,7 +18,8 @@ const home = async (req, res) => {
         const data = await prisma.iklan.findMany({
             take: Number(result),
             include: {
-                Provinsi: true
+                Provinsi: true,
+                Favorit: true
             }
         })
 
@@ -41,8 +42,12 @@ const view = async (req, res) => {
             include: {
                 User: true,
                 Provinsi: true,
-                Kategori: true
-
+                Kategori: true,
+                Favorit: {
+                    include: {
+                        User: true
+                    }
+                }
             }
         })
 
@@ -108,5 +113,29 @@ const deleteData = async (req, res) => {
     }
 }
 
+const favorit = async (req, res) => {
+    const id = req.query.id
+    try {
+        const user = await prisma.user.findUnique({
+            where: {
+                id
+            },
+            include: {
+                favorits: {
+                    include: {
+                        Iklan: true
+                    }
+                }
+            }
+        })
 
-module.exports = { home, view, kategori, kategoriItems, deleteData }
+        const serialized = updateData(user)
+
+        res.json(serialized)
+    } catch (error) {
+        res.json(error)
+    }
+}
+
+
+module.exports = { home, view, kategori, kategoriItems, deleteData, favorit }
