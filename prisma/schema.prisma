@@ -22,6 +22,7 @@ model User {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime?
   iklans       Iklan[]
+  favorits     Favorit[]
 }
 
 model Iklan {
@@ -55,6 +56,15 @@ model Iklan {
   foto             Json
   createdAt        DateTime  @default(now())
   updatedAt        DateTime?
+  Favorit          Favorit[]
+}
+
+model Favorit {
+  id      String  @id @unique @default(uuid())
+  User    User?   @relation(fields: [userId], references: [id])
+  userId  String?
+  iklan   Iklan?  @relation(fields: [iklanId], references: [id])
+  iklanId String?
 }
 
 model Provinsi {
