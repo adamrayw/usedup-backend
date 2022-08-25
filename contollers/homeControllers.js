@@ -84,7 +84,8 @@ const kategoriItems = async (req, res) => {
             include: {
                 Iklan: {
                     include: {
-                        Provinsi: true
+                        Provinsi: true,
+                        Favorit: true
                     }
                 }
             }
