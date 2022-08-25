@@ -16,6 +16,11 @@ const home = async (req, res) => {
     try {
         // const data = await prisma.iklan.findMany()
         const data = await prisma.iklan.findMany({
+            orderBy: [
+                {
+                    createdAt: 'desc'
+                }
+            ],
             take: Number(result),
             include: {
                 Provinsi: true,
