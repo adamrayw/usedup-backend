@@ -129,7 +129,12 @@ const favorit = async (req, res) => {
             include: {
                 favorits: {
                     include: {
-                        Iklan: true
+                        iklan: {
+                            include: {
+                                Provinsi: true,
+                                Favorit: true
+                            }
+                        }
                     }
                 }
             }
