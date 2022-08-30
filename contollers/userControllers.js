@@ -97,8 +97,39 @@ const userLogin = async (req, res) => {
         res.status(400)
         res.json({ message: 'User tidak ditemukan' })
     }
-
-
 }
 
-module.exports = { userRegister, userLogin }
+const updateUser = async (req, res) => {
+    const { name, email, tentang_saya, foto_profile, no_telp } = req.body
+
+    try {
+        const response = await prisma.user.update({
+            where: {
+                id: req.body.id
+            },
+            data: {
+                name,
+                email,
+                tentang_saya,
+                foto_profile,
+                no_telp
+            }
+        })
+
+        res.status(200).json({
+            status: 'success',
+            data: {
+                id: response.id,
+                name: response.name,
+                email: response.email,
+                no_telp: response.no_telp,
+                foto_profile: response.foto_profile,
+                token: generateToken(response.id)
+            }
+        })
+    } catch (error) {
+        res.json(error)
+    }
+}
+
+module.exports = { userRegister, userLogin, updateUser }
