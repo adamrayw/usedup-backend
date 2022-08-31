@@ -184,5 +184,23 @@ const hapusFavorit = async (req, res) => {
     }
 }
 
+const search = async (req, res) => {
+    try {
+        const response = await prisma.iklan.findMany({
+            where: {
+                judul_iklan: {
+                    search: req.query.keyword
+                }
+            }
+        })
 
-module.exports = { home, view, kategori, kategoriItems, deleteData, favorit, tambahFavorit, hapusFavorit }
+        const serialized = updateData(response)
+
+        res.json(serialized)
+    } catch (error) {
+        res.json(error)
+    }
+}
+
+
+module.exports = { home, view, kategori, kategoriItems, deleteData, favorit, tambahFavorit, hapusFavorit, search }
