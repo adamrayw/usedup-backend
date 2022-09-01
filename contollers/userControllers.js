@@ -50,6 +50,9 @@ const userRegister = async (req, res) => {
             id: user.id,
             name: user.name,
             email: user.email,
+            tentang_saya: user.tentang_saya,
+            no_telp: user.no_telp,
+            foto_profile: user.foto_profile,
             token: generateToken(user.id)
         })
     } else {
