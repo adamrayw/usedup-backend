@@ -148,7 +148,6 @@ const userRegister = async (req, res) => {
             foto_profile: user.foto_profile,
             token: generateToken(user.id)
         })
-        sendVerif(user.email, user.id)
     } else {
         res.status(400)
         res.json({ message: 'invalid user data' })
@@ -183,6 +182,7 @@ const userLogin = async (req, res) => {
                     tentang_saya: user.tentang_saya,
                     no_telp: user.no_telp,
                     foto_profile: user.foto_profile,
+                    isVerified: user.isVerified,
                     token: generateToken(user._id)
                 })
             } else {
@@ -249,4 +249,11 @@ const verification = async (req, res) => {
     }
 }
 
-module.exports = { userRegister, userLogin, updateUser, verification }
+const sendEmailVerification = async (req, res) => {
+    const email = req.body.data.email
+    const id = req.body.data.id
+    sendVerif(email, id)
+
+}
+
+module.exports = { userRegister, userLogin, updateUser, verification, sendEmailVerification }
