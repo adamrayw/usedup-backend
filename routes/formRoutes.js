@@ -1,5 +1,5 @@
 const express = require("express");
-const { mobilBekas, provinsiData } = require('../contollers/formControllers');
+const { mobilBekas, provinsiData } = require('../controllers/formControllers');
 const { validateToken } = require("../middleware/validateToken");
 const router = express.Router()
 

@@ -1,5 +1,5 @@
 const express = require('express');
-const { home, view, kategori, kategoriItems, deleteData, favorit, tambahFavorit, hapusFavorit, search } = require('../contollers/homeControllers');
+const { home, view, kategori, kategoriItems, deleteData, favorit, tambahFavorit, hapusFavorit, search } = require('../controllers/homeControllers');
 const { validateToken } = require("../middleware/validateToken");
 const router = express.Router()
 
