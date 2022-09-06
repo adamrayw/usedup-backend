@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch"]
 }
 
@@ -12,18 +12,19 @@ datasource db {
 }
 
 model User {
-  id           String    @id @unique @default(uuid())
-  name         String
-  email        String    @unique
-  password     String
-  tentang_saya String?
-  isVerified   Boolean   @default(false)
-  foto_profile Json?
-  no_telp      String?
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime?
-  iklans       Iklan[]
-  favorits     Favorit[]
+  id                   String    @id @unique @default(uuid())
+  name                 String
+  email                String    @unique
+  password             String
+  tentang_saya         String?
+  isVerified           Boolean   @default(false)
+  foto_profile         Json?
+  no_telp              String?
+  reset_password_token String?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime?
+  iklans               Iklan[]
+  favorits             Favorit[]
 }
 
 model Iklan {
