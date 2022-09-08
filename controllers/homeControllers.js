@@ -185,11 +185,13 @@ const hapusFavorit = async (req, res) => {
 }
 
 const search = async (req, res) => {
+    const keyword = req.query.keyword
+    const replaced = keyword.replaceAll(' ', ' & ')
     try {
         const response = await prisma.iklan.findMany({
             where: {
                 judul_iklan: {
-                    search: req.query.keyword
+                    search: replaced
                 }
             }
         })
