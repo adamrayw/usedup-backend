@@ -66,6 +66,26 @@ const view = async (req, res) => {
     }
 }
 
+const updateDilihat = async (req, res) => {
+    try {
+        console.log(req.body);
+        const dataItem = await prisma.iklan.update({
+            where: {
+                id: req.params.id,
+            },
+            data: {
+                dilihat: req.body.dilihat
+            }
+        })
+
+        const serialized = updateData(dataItem)
+
+        res.status(200).json(serialized)
+    } catch (e) {
+        res.json(e)
+    }
+}
+
 const kategori = async (req, res) => {
     try {
         const data = await prisma.kategori.findMany()
@@ -205,4 +225,4 @@ const search = async (req, res) => {
 }
 
 
-module.exports = { home, view, kategori, kategoriItems, deleteData, favorit, tambahFavorit, hapusFavorit, search }
+module.exports = { home, view, kategori, kategoriItems, deleteData, favorit, tambahFavorit, hapusFavorit, search, updateDilihat }
