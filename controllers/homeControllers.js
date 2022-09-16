@@ -224,5 +224,24 @@ const search = async (req, res) => {
     }
 }
 
+const iklanSaya = async (req, res) => {
+    const data = await prisma.user.findUnique({
+        where: {
+            id: '672eb266-0e34-4dc9-b3b3-d9db1db41e55'
+        },
+        include: {
+            iklans: {
+                include: {
+                    Favorit: true
+                }
+            }
+        }
+    })
 
-module.exports = { home, view, kategori, kategoriItems, deleteData, favorit, tambahFavorit, hapusFavorit, search, updateDilihat }
+    const serialized = updateData(data)
+
+    res.json(serialized)
+}
+
+
+module.exports = { home, view, kategori, kategoriItems, deleteData, favorit, tambahFavorit, hapusFavorit, search, updateDilihat, iklanSaya }
