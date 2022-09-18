@@ -225,22 +225,26 @@ const search = async (req, res) => {
 }
 
 const iklanSaya = async (req, res) => {
-    const data = await prisma.user.findUnique({
-        where: {
-            id: '672eb266-0e34-4dc9-b3b3-d9db1db41e55'
-        },
-        include: {
-            iklans: {
-                include: {
-                    Favorit: true
+    try {
+        const data = await prisma.user.findUnique({
+            where: {
+                id: req.params.id
+            },
+            include: {
+                iklans: {
+                    include: {
+                        Favorit: true
+                    }
                 }
             }
-        }
-    })
+        })
 
-    const serialized = updateData(data)
+        const serialized = updateData(data)
 
-    res.json(serialized)
+        res.status(200).json(serialized)
+    } catch (e) {
+        res.status(400).json(e)
+    }
 }
 
 
