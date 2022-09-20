@@ -13,6 +13,6 @@ router.post('/tambah/favorite', tambahFavorit)
 router.delete('/hapus/favorite', hapusFavorit)
 router.get('/item/search?:keyword', search)
 router.post('/dilihat/:id', updateDilihat)
-router.get('/iklan-saya/:id', iklanSaya)
+router.get('/iklan-saya/:id', validateToken, iklanSaya)
 
 module.exports = router
