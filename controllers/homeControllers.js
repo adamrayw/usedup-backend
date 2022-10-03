@@ -68,7 +68,6 @@ const view = async (req, res) => {
 
 const updateDilihat = async (req, res) => {
     try {
-        console.log(req.body);
         const dataItem = await prisma.iklan.update({
             where: {
                 id: req.params.id,
