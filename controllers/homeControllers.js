@@ -30,10 +30,14 @@ const home = async (req, res) => {
 
         const updated = updateData(data)
 
-        res.status(200).json(updated)
+        res.status(200).json({
+            status: 200,
+            data: updated
+        })
     } catch (e) {
-        res.status(500).json({
-            message: e
+        res.status(400).json({
+            status: 400,
+            error: e
         })
     }
 }
@@ -58,7 +62,10 @@ const view = async (req, res) => {
 
         const updated = updateData(dataItem)
 
-        res.status(200).json(updated)
+        res.status(200).json({
+            status: 200,
+            data: updated
+        })
     } catch (e) {
         res.status(500).json({
             message: e
