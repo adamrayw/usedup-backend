@@ -219,6 +219,10 @@ const search = async (req, res) => {
                 judul_iklan: {
                     search: replaced
                 }
+            },
+            include: {
+                Provinsi: true,
+                Favorit: true
             }
         })
 
