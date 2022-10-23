@@ -7,7 +7,7 @@ const mobilBekas = async (req, res) => {
     const convertHarga = Number(harga)
     const convertTahun = Number(tahun)
     const convertJarakTempuh = Number(jarak_tempuh)
-    const convertKapasitasMesin = Number(jarak_tempuh)
+    const convertKapasitasMesin = Number(kapasitas_mesin)
     await prisma.iklan.create({
         data: {
             userId,
