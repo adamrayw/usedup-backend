@@ -23,7 +23,7 @@
   "homepage": "https://github.com/adamrayw/usedup-backend#readme",
   "devDependencies": {
     "nodemon": "^2.0.19",
-    "prisma": "^4.2.1"
+    "prisma": "^4.5.0"
   },
   "dependencies": {
     "@prisma/client": "^4.2.1",
