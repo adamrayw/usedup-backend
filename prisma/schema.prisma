@@ -54,6 +54,8 @@ model Iklan {
   lantai           Int?
   fasilitas        String?
   sertifikasi      String?
+  penyimpanan      BigInt?
+  ram              BigInt?
   harga            BigInt
   foto             Json
   dilihat          BigInt    @default(0)
