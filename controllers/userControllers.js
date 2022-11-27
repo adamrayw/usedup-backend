@@ -5,6 +5,16 @@ const jwt = require('jsonwebtoken');
 
 const prisma = new PrismaClient()
 
+function updateData(data) {
+  const updatedData = JSON.stringify(data, (key, value) => (
+    typeof value === 'bigint' ? value.toString() : value
+  ))
+
+  const parsed = JSON.parse(updatedData)
+
+  return parsed
+}
+
 // EMAIL SEND
 var SibApiV3Sdk = require("sib-api-v3-sdk");
 var defaultClient = SibApiV3Sdk.ApiClient.instance;
@@ -914,4 +924,37 @@ const resetPasswordPost = async (req, res) => {
   }
 }
 
-module.exports = { userRegister, userLogin, updateUser, verification, sendEmailVerification, forgotPassword, resetPassword, resetPasswordPost }
+const userProfile = async (req, res) => {
+  const id = req.params.id
+
+  try {
+    const dataProfile = await prisma.user.findUnique({
+      where: {
+        id: id
+      },
+      include: {
+        iklans: {
+          include: {
+            Provinsi: true,
+            Favorit: true
+          }
+        }
+      }
+    })
+
+    const serialized = updateData(dataProfile)
+
+    res.status(200).json({
+      status: true,
+      data: serialized
+    })
+    // console.log(dataProfile);
+  } catch (error) {
+    res.status(400).json({
+      status: false,
+      message: error
+    })
+  }
+}
+
+module.exports = { userRegister, userLogin, updateUser, verification, sendEmailVerification, forgotPassword, resetPassword, resetPasswordPost, userProfile }
