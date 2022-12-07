@@ -638,7 +638,7 @@ const sendForgetPassword = async (email, token, id) => {
 
 // Setup JWT
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
+  return jwt.sign({ id }, '12dawd', {
     expiresIn: '30d'
   })
 }
