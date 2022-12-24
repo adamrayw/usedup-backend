@@ -12,19 +12,22 @@ datasource db {
 }
 
 model User {
-  id                   String    @id @unique @default(uuid())
+  id                   String        @id @unique @default(uuid())
   name                 String
-  email                String    @unique
+  email                String        @unique
   password             String
   tentang_saya         String?
-  isVerified           Boolean   @default(false)
+  isVerified           Boolean       @default(false)
   foto_profile         Json?
   no_telp              String?
   reset_password_token String?
-  createdAt            DateTime  @default(now())
+  createdAt            DateTime      @default(now())
   updatedAt            DateTime?
   iklans               Iklan[]
   favorits             Favorit[]
+  Participant          Participant[]
+  Message              Message[]
+  Room                 Room[]
 }
 
 model Iklan {
@@ -89,4 +92,36 @@ model Kategori {
   name  String
   slug  String  @unique
   Iklan Iklan[]
+}
+
+model Room {
+  id          String        @id @unique @default(uuid())
+  name        String?
+  Participant Participant[]
+  Message     Message[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime?
+  User        User?         @relation(fields: [userId], references: [id])
+  userId      String?
+}
+
+model Participant {
+  id        String    @id @unique @default(uuid())
+  User      User?     @relation(fields: [userId], references: [id])
+  userId    String?
+  Room      Room?     @relation(fields: [roomId], references: [id])
+  roomId    String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
+}
+
+model Message {
+  id        String    @id @unique @default(uuid())
+  User      User?     @relation(fields: [userId], references: [id])
+  userId    String?
+  Room      Room?     @relation(fields: [roomId], references: [id])
+  roomId    String?
+  message   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
 }

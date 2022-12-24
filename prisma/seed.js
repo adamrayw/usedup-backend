@@ -3,26 +3,26 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient()
 
 async function main() {
-    await prisma.kategori.createMany({
-        data: [
-            {
-                "name": "Mobil Bekas",
-                "slug": "mobil-bekas"
-            },
-            {
-                "name": "Motor Bekas",
-                "slug": "motor-bekas"
-            },
-            {
-                "name": "Property",
-                "slug": "property"
-            },
-            {
-                "name": "Elektronik & Gadget",
-                "slug": "elektronik-gadget"
-            },
-        ]
-    })
+    // await prisma.kategori.createMany({
+    //     data: [
+    //         {
+    //             "name": "Mobil Bekas",
+    //             "slug": "mobil-bekas"
+    //         },
+    //         {
+    //             "name": "Motor Bekas",
+    //             "slug": "motor-bekas"
+    //         },
+    //         {
+    //             "name": "Property",
+    //             "slug": "property"
+    //         },
+    //         {
+    //             "name": "Elektronik & Gadget",
+    //             "slug": "elektronik-gadget"
+    //         },
+    //     ]
+    // })
 
     await prisma.provinsi.createMany({
         data: [
