@@ -48,9 +48,6 @@ app.use('/api/', homeRoute)
 app.use('/api/', chatRoutes)
 
 
-server.listen(3001, () => {
-    console.log('Socket running...');
-})
-app.listen(process.env.PORT || 8080, () => {
-    console.log(`Server running...`)
+server.listen(process.env.PORT || 3000, () => {
+    console.log('Server running...');
 })
