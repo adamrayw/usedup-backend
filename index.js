@@ -15,8 +15,7 @@ app.use(cors());
 // Socket.io
 const io = new Server(server, {
     cors: {
-        // origin: "http://localhost:3000",
-        origin: "https://usedup.vercel.app",
+        origin: '*',
         methods: ["GET", "POST"]
     }
 })
