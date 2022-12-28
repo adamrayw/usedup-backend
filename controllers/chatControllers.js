@@ -122,8 +122,7 @@ const createRoom = async (req, res) => {
 
     // let isExisting = checkExistingUser.Participant[0].Room.Participant.length < 1 || checkExistingUser.Participant.length < 1
 
-
-    if (checkExistingUser.Participant.length < 1 || checkExistingUser.Participant.length < 1) {
+    if (checkExistingUser === null || checkExistingUser.Participant.length < 1) {
         try {
             const response = await prisma.room.create({
                 data: {
