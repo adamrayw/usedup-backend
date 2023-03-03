@@ -27,15 +27,12 @@ const io = socketio(server, {
 // emit a notification event to all connected clients
 
 io.on("connection", (socket) => {
-    console.log(socket.id);
 
-    const notification = {
-        id: 1,
-        message: 'New notification',
-    };
+    socket.to('446dbe1f-b3d8-4445-8660-9f065fd01d92').emit("receive_message", "data")
 
-    socket.on('notification', () => {
-        console.log('notif')
+    socket.on('notification', (data) => {
+        console.log("Welcomr")
+        socket.emit("notification", data)
     });
 
     socket.on("join_room", (data) => {
