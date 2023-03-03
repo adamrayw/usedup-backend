@@ -4,16 +4,16 @@ const formRoutes = require('./routes/formRoutes');
 const homeRoute = require('./routes/homeRoute');
 const chatRoutes = require('./routes/chatRoutes');
 const cors = require('cors');
-const { Server } = require('socket.io')
+const socketio = require('socket.io')
 
 const http = require('http');
 const app = express()
 const server = http.createServer(app)
 
-app.use(cors({ origin: '*' }));
+app.use(cors());
 
 // Socket.io
-const io = new Server(server)
+const io = socketio(server)
 
 // create a new notification
 
