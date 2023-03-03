@@ -64,9 +64,9 @@ app.use('/api/', homeRoute)
 app.use('/api/', chatRoutes)
 
 
-// server.listen(process.env.PORT || 3000, () => {
-//     console.log('Server running...');
-// })
-server.listen(3001, () => {
-    console.log('Server running...' + process.env.PORT);
+server.listen(process.env.PORT || 3000, () => {
+    console.log('Server running...');
 })
+// server.listen(3001, () => {
+//     console.log('Server running...' + process.env.PORT);
+// })
