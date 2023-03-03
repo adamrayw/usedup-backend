@@ -46,24 +46,28 @@ const chat = async (req, res) => {
 const getChatMsg = async (req, res) => {
     const roomId = req.params.roomId
 
-    try {
-        const response = await prisma.room.findUnique({
-            where: {
-                id: roomId
-            },
-            include: {
-                Message: true
+    // try {
+    const response = await prisma.room.findUnique({
+        where: {
+            id: roomId
+        },
+        include: {
+            Message: {
+                orderBy: {
+                    createdAt: "asc"
+                }
             }
-        })
+        },
+    })
 
-        res.status(200).json({
-            response
-        })
-    } catch (error) {
-        res.status(400).json({
-            error
-        })
-    }
+    res.status(200).json({
+        response
+    })
+    // } catch (error) {
+    //     res.status(400).json({
+    //         error
+    //     })
+    // }
 }
 
 const sendMessage = async (req, res) => {
