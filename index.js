@@ -13,7 +13,12 @@ const server = http.createServer(app)
 app.use(cors());
 
 // Socket.io
-const io = socketio(server)
+const io = socketio(server, {
+    cors: {
+        origin: '*',
+        credentials: true
+    }
+})
 
 // create a new notification
 
