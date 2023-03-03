@@ -13,12 +13,7 @@ const server = http.createServer(app)
 app.use(cors({ origin: '*' }));
 
 // Socket.io
-const io = new Server(server, {
-    cors: {
-        origin: '*',
-        methods: ["GET", "POST"]
-    }
-})
+const io = new Server(server)
 
 // create a new notification
 
