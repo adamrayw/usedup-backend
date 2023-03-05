@@ -3,6 +3,7 @@ const userRoutes = require('./routes/userRoutes');
 const formRoutes = require('./routes/formRoutes');
 const homeRoute = require('./routes/homeRoute');
 const chatRoutes = require('./routes/chatRoutes');
+const iklanRoutes = require('./routes/iklanRoutes');
 const cors = require('cors');
 const socketio = require('socket.io')
 
@@ -59,9 +60,10 @@ app.use('/api/', userRoutes)
 app.use('/api/', formRoutes)
 app.use('/api/', homeRoute)
 app.use('/api/', chatRoutes)
+app.use('/api/', iklanRoutes)
 
 
-server.listen(process.env.PORT || 3000, () => {
+server.listen(process.env.PORT || 3001, () => {
     console.log('Server running...');
 })
 // server.listen(3001, () => {
