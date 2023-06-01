@@ -37,6 +37,7 @@ const home = async (req, res) => {
     } catch (e) {
         res.status(400).json({
             status: 400,
+            message: e,
             error: e
         })
     }
